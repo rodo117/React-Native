@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './MenuComponent'
 import Home from './HomeComponent'
 import Dishdetail from './DishDetailComponent';
+import Contact from './ContactComponent';
 import { View, Platform, Image, StyleSheet, ScrollView, Text } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -9,6 +10,7 @@ import { Icon } from 'react-native-elements';
 const MenuNavigator = createStackNavigator({
     Menu: { screen: Menu },
     Dishdetail: { screen: Dishdetail }
+
 }, {
         initialRouteName: 'Menu',
         navigationOptions: ({ navigation }) => ({
@@ -43,6 +45,24 @@ const HomeNavigator = createStackNavigator({
             />
         })
     });
+
+    const ContactNavigator = createStackNavigator({
+        Contact: { screen: Contact },
+    }, {
+            navigationOptions: ({ navigation }) => ({
+                headerStyle: {
+                    backgroundColor: '#512DA8'
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    color: '#fff'
+                },
+                headerLeft: <Icon name='menu' size={24}
+                    color='white'
+                    onPress={() => navigation.toggleDrawer()}
+                />
+            })
+        });
 
 const CustomDrawerContentComponent = (props) => (
     <ScrollView>
@@ -79,6 +99,21 @@ const MainNavigator = createDrawerNavigator({
             )
         }
     },
+    About: {
+        screen: HomeNavigator,
+        navigationOptions: {
+            title: 'About us',
+            drawLabel: 'About Us',
+            drawerIcon: ({ tintColor }) => (
+                <Icon
+                    name='list'
+                    type='font-awesome'
+                    size={22}
+                    color={tintColor}
+                />
+            )
+        }
+    },
     Menu: {
         screen: MenuNavigator,
         navigationOptions: {
@@ -93,7 +128,23 @@ const MainNavigator = createDrawerNavigator({
                 />
             )
         }
-    }
+    },
+    Contact: {
+        screen: ContactNavigator,
+        navigationOptions: {
+            title: 'Contact',
+            drawLabel: 'Contact',
+            drawerIcon: ({ tintColor }) => (
+                <Icon
+                    name='list'
+                    type='font-awesome'
+                    size={22}
+                    color={tintColor}
+                />
+            )
+        }
+    },
+ 
 }, {
         drawerBackgroundColor: '#D1C4E9',
         contentComponent: CustomDrawerContentComponent

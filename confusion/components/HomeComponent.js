@@ -5,7 +5,7 @@ import { DISHES } from '../shared/dishes'
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
 
-function RenderItem(props){
+function RenderItem(props) {
     const item = props.item;
     if (item != null) {
         return (
@@ -29,12 +29,12 @@ function RenderItem(props){
 
 class Home extends Component {
 
-    constructor (props){
+    constructor(props) {
         super(props);
         this.state = {
-            dishes:DISHES,
-            promotions:PROMOTIONS,
-            leaders:LEADERS
+            dishes: DISHES,
+            promotions: PROMOTIONS,
+            leaders: LEADERS
         }
     }
 
@@ -45,8 +45,8 @@ class Home extends Component {
     render() {
         return (
             <ScrollView>
-                <RenderItem item={this.state.dishes.filter((dish)=>dish.featured)[0]}/>
-                <RenderItem item item ={this.state.promotions.filter((promo)=>promo.featured)[0]}/>
+                <RenderItem item={this.state.dishes.filter((dish) => dish.featured)[0]} />
+                <RenderItem item item={this.state.promotions.filter((promo) => promo.featured)[0]} />
                 <RenderItem item={this.state.leaders.filter((leader) => leader.featured)[0]} />
             </ScrollView>
         );
